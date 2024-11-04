@@ -11,7 +11,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: "https://zoroz-ohh9.onrender.com/"
+  origin: "https://zoroz-ecom.netlify.app/"
 }));
 app.use(express.json());
 app.use('/api/products', productRoutes);
