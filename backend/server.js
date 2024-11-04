@@ -10,7 +10,9 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: "https://zoroz-ohh9.onrender.com/"
+}));
 app.use(express.json());
 app.use('/api/products', productRoutes);
 
