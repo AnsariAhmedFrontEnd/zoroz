@@ -15,7 +15,7 @@ function ProductListingPage() {
     async function fetchProducts() {
       try {
         setLoading(true);
-        const { data } = await axios.get('http://localhost:5000/api/products');
+        const { data } = await axios.get('https://zoroz-ohh9.onrender.com/api/products');
         setProducts(data);
       } catch (err) {
         setError('Failed to fetch products. Please try again later.');
