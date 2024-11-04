@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import CheckoutPage from "./pages/CheckoutPage";
 import HomePage from "./pages/HomePage";
 import ProductListingPage from "./pages/ProductListingPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import CartPage from "./pages/CartPage";
-import { CartProvider } from "./CartContext";
+import { CartProvider } from "./store/CartContext";
 import Navbar from "./components/Navbar";
 import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 import PaymentFailurePage from "./pages/PaymentFailurePage";

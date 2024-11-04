@@ -1,4 +1,3 @@
-// CartContext.js
 import React, { createContext, useContext, useState } from 'react';
 
 const CartContext = createContext();
@@ -21,8 +20,13 @@ export const CartProvider = ({ children }) => {
     setCart((prevCart) => prevCart.filter((item) => item._id !== productId));
   };
 
+  const clearCart = () => {
+    setCart([]); // Clear the cart
+    alert('Your cart has been cleared!'); // Optional alert
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );

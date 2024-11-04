@@ -1,11 +1,10 @@
 import React from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import { Container, Card, Button } from 'react-bootstrap';
-import { useCart } from '../CartContext';
+import { useLocation } from 'react-router-dom';
+import { Container, Card, Button, Row, Col } from 'react-bootstrap';
+import { useCart } from '../store/CartContext';
 
 function ProductDetailPage() {
   const { state } = useLocation();
-  const { id } = useParams();
   const { addToCart } = useCart();
 
   const product = state?.product;
@@ -15,15 +14,28 @@ function ProductDetailPage() {
   return (
     <Container>
       <Card className="my-4">
-        <Card.Img variant="top" src={product.imageUrl} />
-        <Card.Body>
-          <Card.Title>{product.name}</Card.Title>
-          <Card.Text>{product.description}</Card.Text>
-          <h4>${product.price}</h4>
-          <Button variant="primary" onClick={() => addToCart(product)}>
-            Add to Cart
-          </Button>
-        </Card.Body>
+        <Row className="g-0">
+          {/* Image on the Left */}
+          <Col md={5}>
+            <Card.Img
+              variant="top"
+              src={product.imageUrl}
+              style={{ height: '100%', objectFit: 'cover' }}
+            />
+          </Col>
+
+          {/* Details on the Right */}
+          <Col md={7}>
+            <Card.Body>
+              <Card.Title>{product.name}</Card.Title>
+              <Card.Text>{product.description}</Card.Text>
+              <h4>${product.price}</h4>
+              <Button variant="primary" onClick={() => addToCart(product)}>
+                Add to Cart
+              </Button>
+            </Card.Body>
+          </Col>
+        </Row>
       </Card>
     </Container>
   );

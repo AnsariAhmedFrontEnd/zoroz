@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Card, Container, Row, Col, Spinner } from 'react-bootstrap';
+import { Card, Container, Row, Col, Spinner, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './ProductListingPage.css'; // Import your custom CSS
+import { useCart } from '../store/CartContext';
+import './ProductListingPage.css';
 
 function ProductListingPage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { addToCart } = useCart();  // Destructure addToCart from the Cart context
 
   useEffect(() => {
     async function fetchProducts() {
@@ -34,16 +36,26 @@ function ProductListingPage() {
           <Col key={product._id} md={4} className="d-flex">
             <Card className="my-3 flex-fill">
               <Link to={`/products/${product._id}`} state={{ product }}>
-                <Card.Img variant="top" src={product.imageUrl} />
+                <div style={{ height: "200px", overflow: "hidden" }}>
+                  <Card.Img
+                    variant="top"
+                    src={product.imageUrl}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                </div>
               </Link>
               <Card.Body className="d-flex flex-column">
                 <Card.Title>{product.name}</Card.Title>
                 <Card.Text className="product-description">
                   {product.description}
                 </Card.Text>
-                <Link to={`/products/${product._id}`} state={{ product }} className="btn btn-primary mt-auto">
-                  View Details
-                </Link>
+                <Button 
+                  variant="primary" 
+                  className="mt-auto w-50 align-self-end"
+                  onClick={() => addToCart(product)}  // Call addToCart on button click
+                >
+                  Add to Cart
+                </Button>
               </Card.Body>
             </Card>
           </Col>

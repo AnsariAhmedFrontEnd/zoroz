@@ -6,10 +6,12 @@ function PaymentFailurePage() {
   const navigate = useNavigate();
 
   return (
-    <Container>
-      <h2>Payment Failed</h2>
-      <p>Unfortunately, your payment could not be processed. Please try again.</p>
-      <Button variant="primary" onClick={() => navigate('/checkout')}>
+    <Container className="d-flex flex-column align-items-center justify-content-center" style={{ height: '70vh', textAlign: 'center' }}>
+      <h2 className="mb-4 text-danger">Payment Failed</h2>
+      <p className="mb-5" style={{ fontSize: '1.2rem', color: '#555' }}>
+        Unfortunately, your payment could not be processed. Please try again.
+      </p>
+      <Button variant="primary" size="lg" onClick={() => navigate('/checkout')}>
         Retry Payment
       </Button>
     </Container>

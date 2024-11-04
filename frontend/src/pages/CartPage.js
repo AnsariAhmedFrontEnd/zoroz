@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Table, Button } from 'react-bootstrap';
-import { useCart } from '../CartContext';
+import { useCart } from '../store/CartContext';
 import { useNavigate } from 'react-router-dom';
 
 function CartPage() {
@@ -9,8 +9,8 @@ function CartPage() {
 
   if (cart.length === 0) {
     return (
-      <Container>
-        <h2>Your Cart is Empty</h2>
+      <Container className="text-center my-5">
+        <h2 className="mb-4">Your Cart is Empty</h2>
         <Button variant="primary" onClick={() => navigate("/products")}>
           Continue Shopping
         </Button>
@@ -19,10 +19,10 @@ function CartPage() {
   }
 
   return (
-    <Container>
-      <h2>Your Cart</h2>
-      <Table striped bordered hover>
-        <thead>
+    <Container className="my-5">
+      <h2 className="mb-4 text-center">Your Cart</h2>
+      <Table striped bordered hover responsive="sm" className="mb-4">
+        <thead className="table-dark">
           <tr>
             <th>Product</th>
             <th>Price</th>
@@ -33,9 +33,9 @@ function CartPage() {
           {cart.map((product) => (
             <tr key={product._id}>
               <td>{product.name}</td>
-              <td>${product.price}</td>
+              <td>${product.price.toFixed(2)}</td>
               <td>
-                <Button variant="danger" onClick={() => removeFromCart(product._id)}>
+                <Button variant="danger" size="sm" onClick={() => removeFromCart(product._id)}>
                   Remove
                 </Button>
               </td>
@@ -43,12 +43,14 @@ function CartPage() {
           ))}
         </tbody>
       </Table>
-      <Button variant="success" onClick={clearCart}>
-        Clear Cart
-      </Button>
-      <Button variant="primary" onClick={() => navigate("/checkout")} style={{ marginTop: '10px' }}>
-        Proceed to Checkout
-      </Button>
+      <div className="d-flex justify-content-between">
+        <Button variant="danger" onClick={clearCart}>
+          Clear Cart
+        </Button>
+        <Button variant="primary" onClick={() => navigate("/checkout")}>
+          Proceed to Checkout
+        </Button>
+      </div>
     </Container>
   );
 }

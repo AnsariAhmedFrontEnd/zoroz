@@ -20,8 +20,14 @@ function HomePage() {
           <Row>
             {items.map((product) => (
               <Col key={product.id} sm={4} className="mb-3">
-                <Card className="mt-3">
-                  <Card.Img variant="top" src={product.imageUrl} />
+                <Card className="mt-3" style={{ height: "100%" }}>
+                  <div style={{ height: "200px", overflow: "hidden" }}>
+                    <Card.Img
+                      variant="top"
+                      src={product.imageUrl}
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
+                  </div>
                   <Card.Body>
                     <Card.Title>{product.name}</Card.Title>
                     <Card.Text>${product.price}</Card.Text>
